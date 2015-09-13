@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MuseumFinder is part of a research project of Drexel University and IMLS." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="vBW-xo-4sc">
+                                <rect key="frame" x="16" y="638" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.41398983039999998" green="0.4425277198" blue="0.93921638259999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="EE5-jI-jz5">
+                                <rect key="frame" x="12" y="236.5" width="347" height="195"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="EE5-jI-jz5" secondAttribute="height" multiplier="281:158" id="BOC-12-6yR"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="vBW-xo-4sc" secondAttribute="bottom" constant="8.5" id="8Zo-kz-KN2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EE5-jI-jz5" secondAttribute="trailing" id="ETH-mQ-CdP"/>
+                            <constraint firstItem="EE5-jI-jz5" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="K3F-el-XZ3"/>
+                            <constraint firstItem="EE5-jI-jz5" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-4" id="MxW-LS-64N"/>
+                            <constraint firstItem="EE5-jI-jz5" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="281:667" id="VBi-tS-Sjf"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="vBW-xo-4sc" secondAttribute="leading" id="Wot-UX-n7g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vBW-xo-4sc" secondAttribute="trailing" id="q6h-ng-EHD"/>
+                            <constraint firstItem="EE5-jI-jz5" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="weA-N3-h9i"/>
+                            <constraint firstItem="EE5-jI-jz5" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="347:667" id="xMt-5Q-BY2"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="VBi-tS-Sjf"/>
+                                <exclude reference="weA-N3-h9i"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.5" y="374.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LaunchImage.png" width="1334" height="750"/>
+    </resources>
+</document>

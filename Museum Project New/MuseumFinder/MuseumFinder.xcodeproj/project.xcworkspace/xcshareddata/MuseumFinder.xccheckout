@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0EA0AEFA-1A35-4A4F-936C-DB3084FB39C2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MuseumFinder</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0E595F7B216E00CCFFE5EF3DAD688C0962372D82</key>
+		<string>https://github.com/drexelapplab/IMLS-Museum-Finder.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Museum Project New/MuseumFinder/MuseumFinder.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0E595F7B216E00CCFFE5EF3DAD688C0962372D82</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/drexelapplab/IMLS-Museum-Finder.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0E595F7B216E00CCFFE5EF3DAD688C0962372D82</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0E595F7B216E00CCFFE5EF3DAD688C0962372D82</string>
+			<key>IDESourceControlWCCName</key>
+			<string>musuem%20project%20</string>
+		</dict>
+	</array>
+</dict>
+</plist>
