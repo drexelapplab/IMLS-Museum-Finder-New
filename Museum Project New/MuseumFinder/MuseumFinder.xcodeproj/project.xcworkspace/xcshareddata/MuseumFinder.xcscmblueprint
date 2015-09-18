@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "50729E613AAC8717A2A9B3891569A6502449C1C9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "50729E613AAC8717A2A9B3891569A6502449C1C9" : 0,
+    "0E595F7B216E00CCFFE5EF3DAD688C0962372D82" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0EA0AEFA-1A35-4A4F-936C-DB3084FB39C2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "50729E613AAC8717A2A9B3891569A6502449C1C9" : "Museum%20Project\/",
+    "0E595F7B216E00CCFFE5EF3DAD688C0962372D82" : "musuem%20project%20"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MuseumFinder",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Museum Project New\/MuseumFinder\/MuseumFinder.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/drexelapplab\/IMLS-Museum-Finder.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0E595F7B216E00CCFFE5EF3DAD688C0962372D82"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/drexelapplab\/IMLS-Museum-Finder-New.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "50729E613AAC8717A2A9B3891569A6502449C1C9"
+    }
+  ]
+}

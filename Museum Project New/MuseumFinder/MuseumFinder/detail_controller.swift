@@ -15,12 +15,10 @@ public var myNewURLPath = ""
 public var numberFormatter = NSNumberFormatter()
 
 
-
-// can I use the icons neville wanted..legally?
-
 class detail_controller: UIViewController {
 
     
+    //linked up all the labels and views
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var disciplineLabel: UILabel!
     
@@ -35,6 +33,8 @@ class detail_controller: UIViewController {
     
     @IBOutlet var detailMap: MKMapView!
     
+    
+    
      var geocoder = CLGeocoder()
     
     
@@ -43,6 +43,8 @@ class detail_controller: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // if there is a url path set for the query
         if myNewURLPath != ""{
         getMusuemDetails()
         
@@ -55,40 +57,44 @@ class detail_controller: UIViewController {
     
     
     
+    // sends the query and gets the museum details
+    // also parse the given information
     
     func getMusuemDetails(){
         
     let url = NSURL(string: myNewURLPath)
         if let musuemData=NSData(contentsOfURL:url!){
             
-            
             do{
                 let musuemInfo: AnyObject! = try NSJSONSerialization.JSONObjectWithData(musuemData, options: NSJSONReadingOptions(rawValue: 0))
-            
-            
-            
             
             
                 if let json = musuemInfo as? Array<NSDictionary> {
                     if json.count >= 1{
                         
                         
+                        // gets the museum aand its informations
                         let myEntry : AnyObject! = json[0]
+                        
+                        //gets the location from the museum info
                         let myLoc : AnyObject! = myEntry["location"]
                         
-                        
+                        //converts the lat and long from strings
                         let newLat  = numberFormatter.numberFromString(myLoc["latitude"] as! String)!.doubleValue
                         let newLng = numberFormatter.numberFromString(myLoc["longitude"] as! String)!.doubleValue
                         
                         
                         
                         
+                        //gets the name and sets it to the name label
                         if let name:String = myEntry["commonname"] as? String {
                             nameLabel.text = name
                         }
                         
                         
                         
+                        
+                        //sets the disipline label as well
                         
                         if let discipl:String = myEntry["discipl"] as? String {
                             
@@ -132,6 +138,9 @@ class detail_controller: UIViewController {
                         
                         
                         
+                        
+                        
+                        // gets the phone string and adds two "-" before adding it to the label
                         if var phone:String = myEntry["phone"] as? String {
                             
                             phone.insert("-", atIndex: phone.endIndex.predecessor().predecessor().predecessor().predecessor())
@@ -146,8 +155,7 @@ class detail_controller: UIViewController {
                         
                         
                         
-                        
-                        
+                        //sets the url label
                         if let website:String = myEntry["weburl"] as? String{
                             websiteView.text = website
                         }else{
@@ -158,18 +166,24 @@ class detail_controller: UIViewController {
                         
                         
                         
+                        
+                        // gets the human address infor from the museum details
                         if let human_address : AnyObject! = myLoc["human_address"]
                         {
+                            //sets the view until it parses the information
                             self.adressView.text = "Loading..."
                             
+                            //converst the coordinates to one location
                             let loc = CLLocation(latitude: newLat, longitude: newLng)
                             
                             
                             
-                           
+                           //finds the information about a certain location from the location
                             geocoder.reverseGeocodeLocation(loc, completionHandler: { (placemarks:[CLPlacemark]?, error) -> Void in
+                                
                                 if(error != nil)
                                 {
+                                    // if there is an issue set the label to the address from the API
                                     print("Error Geocoding String ")
                                     
                                     let partialAddress = (human_address as? String)!.stringByReplacingOccurrencesOfString("{", withString: "").stringByReplacingOccurrencesOfString("}", withString: "").stringByReplacingOccurrencesOfString(",", withString: "").stringByReplacingOccurrencesOfString("\"", withString: "").stringByReplacingOccurrencesOfString("address", withString: "").stringByReplacingOccurrencesOfString("city", withString: "").stringByReplacingOccurrencesOfString("state", withString: "").stringByReplacingOccurrencesOfString("zip", withString: "").stringByReplacingOccurrencesOfString(":", withString: "")
@@ -178,6 +192,7 @@ class detail_controller: UIViewController {
                                     
                                 }else{
                                     
+                                    //if there is no error then set the placemark name to the address
                                     let placemark = placemarks![0]
                                     
                                     if let name = placemark.name
@@ -211,14 +226,13 @@ class detail_controller: UIViewController {
                         
                         
                         
-                        
+                        // sets the detail mapview to the coordinate of the museum whose data we have recieved
                         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: newLat, longitude: newLng)
                             ,span: MKCoordinateSpanMake(0.008, 0.008))
                         let annotation = MKPointAnnotation()
                         annotation.coordinate = CLLocationCoordinate2DMake(newLat, newLng)
                         
-                        
-                        
+                        //sets the region and adds the annotation
                         detailMap.setRegion(region, animated: true)
                         self.detailMap.addAnnotation(annotation)
                        

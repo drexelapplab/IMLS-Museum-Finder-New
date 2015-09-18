@@ -7,34 +7,34 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>0EA0AEFA-1A35-4A4F-936C-DB3084FB39C2</string>
 	<key>IDESourceControlProjectName</key>
-	<string>MuseumFinder</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0E595F7B216E00CCFFE5EF3DAD688C0962372D82</key>
-		<string>https://github.com/drexelapplab/IMLS-Museum-Finder.git</string>
+		<key>50729E613AAC8717A2A9B3891569A6502449C1C9</key>
+		<string>https://github.com/drexelapplab/IMLS-Museum-Finder-New.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Museum Project New/MuseumFinder/MuseumFinder.xcodeproj</string>
+	<string>Museum Project New/MuseumFinder/MuseumFinder.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0E595F7B216E00CCFFE5EF3DAD688C0962372D82</key>
+		<key>50729E613AAC8717A2A9B3891569A6502449C1C9</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/drexelapplab/IMLS-Museum-Finder.git</string>
+	<string>https://github.com/drexelapplab/IMLS-Museum-Finder-New.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0E595F7B216E00CCFFE5EF3DAD688C0962372D82</string>
+	<string>50729E613AAC8717A2A9B3891569A6502449C1C9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0E595F7B216E00CCFFE5EF3DAD688C0962372D82</string>
+			<string>50729E613AAC8717A2A9B3891569A6502449C1C9</string>
 			<key>IDESourceControlWCCName</key>
-			<string>musuem%20project%20</string>
+			<string>Museum%20Project</string>
 		</dict>
 	</array>
 </dict>

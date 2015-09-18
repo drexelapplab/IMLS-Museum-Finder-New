@@ -15,11 +15,7 @@ class category_controller: UIViewController {
     
     
     
-   
-    
-    
-    @IBOutlet var nav: UINavigationItem!
-    
+    // links up all the switches
     @IBOutlet var art: UISwitch!
     @IBOutlet var bot: UISwitch!
     @IBOutlet var cmu: UISwitch!
@@ -30,11 +26,19 @@ class category_controller: UIViewController {
     @IBOutlet var sci: UISwitch!
     @IBOutlet var zaw: UISwitch!
     
+    
+    //links the buttons
     @IBOutlet var dsAll: UIButton!
     @IBOutlet var selAll: UIButton!
     
+    
+    //cretaes an array for the switches
     var buttonsExAll = [UISwitch]()
+    
+    //creates an array for the switch names
     var buttonnamesExAll = [String]()
+    
+    //bool for use later on
     var isFirst = Bool()
   
     
@@ -44,10 +48,7 @@ class category_controller: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let backItem = UIBarButtonItem(title: "Custom", style: .Plain, target: nil, action: nil)
-        nav.backBarButtonItem = backItem
-        
-        
+        //add the switches to the array
             buttonsExAll.append(art)
             buttonsExAll.append(bot)
             buttonsExAll.append(cmu)
@@ -57,7 +58,8 @@ class category_controller: UIViewController {
             buttonsExAll.append(nat)
             buttonsExAll.append(sci)
             buttonsExAll.append(zaw)
-            
+        
+        //add the names to the name array
             buttonnamesExAll.append("art")
             buttonnamesExAll.append("bot")
             buttonnamesExAll.append("cmu")
@@ -69,6 +71,7 @@ class category_controller: UIViewController {
             buttonnamesExAll.append("zaw")
         
         
+        // if this isnot the first time loading or if there has been a categories filter before then check all the preferred switches
        if musCatArray.count != 0 {
         
             for b in 0...buttonnamesExAll.count-1
@@ -86,30 +89,32 @@ class category_controller: UIViewController {
                 }
             }
         }else{
-        
+        //if not then check all the switches
         selectAllPresses(self)
         }
+        
+        //resize all the switches
+        //find a way to do this non-progrmatically
         resizeSwitches()
     }
     
     
 
     
-    
+    //method that resizes all the switches
     func resizeSwitches(){
         
         let reducedBy : CGFloat = 0.65
     
-        
         for switches in  0...buttonsExAll.count-1 {
             buttonsExAll[switches].transform = CGAffineTransformMakeScale(reducedBy, reducedBy)
         }
-    
-    
     }
     
     
     
+    
+    //checks all the switches
     @IBAction func selectAllPresses(sender: AnyObject) {
         
         for index in 0...buttonsExAll.count-1
@@ -119,7 +124,7 @@ class category_controller: UIViewController {
     }
     
     
-    
+    //unchecks all the switches
     @IBAction func deselectAllPressed(sender: AnyObject) {
         
         for index in 0...buttonsExAll.count-1
@@ -133,7 +138,7 @@ class category_controller: UIViewController {
     
     
     
-    
+    //back button pressed
     @IBAction func backPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -143,23 +148,24 @@ class category_controller: UIViewController {
     
     
     
-    
+    //if done pressed
     @IBAction func donePressed(sender: AnyObject) {
        
+        //set up an emty string, remove all the old stuff from the array and set the first bool to true
         catString = ""
         musCatArray.removeAll(keepCapacity: false)
         isFirst = true
         
         
         
-        
+        // for every switch check if it is checked, if it is add the name of the discipl to the string
         for index in 0...buttonsExAll.count-1
         {
             if buttonsExAll[index].on == true
             {
                 musCatArray.append(buttonnamesExAll[index])
                 
-                
+                //if it is tje first  switch the dont add the OR extension
                 if !isFirst{
                     catString = catString + "OR "
                 }
@@ -172,6 +178,8 @@ class category_controller: UIViewController {
         
         
         
+        
+        //put the string inside  parentheses
         if musCatArray.count != 0
             
         {
@@ -180,8 +188,11 @@ class category_controller: UIViewController {
         
         
         
+        
+        
         print(catString)
         
+        //sets the from categories bool to true and dismisses the view controller
         fromCat = true
         self.dismissViewControllerAnimated(true, completion: nil)  
     }

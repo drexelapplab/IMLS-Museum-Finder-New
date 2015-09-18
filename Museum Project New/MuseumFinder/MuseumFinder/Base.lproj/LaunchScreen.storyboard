@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="EE5-jI-jz5">
-                                <rect key="frame" x="12" y="236.5" width="347" height="195"/>
+                                <rect key="frame" x="12" y="235" width="351" height="197"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="EE5-jI-jz5" secondAttribute="height" multiplier="281:158" id="BOC-12-6yR"/>
                                 </constraints>
@@ -34,22 +34,13 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="vBW-xo-4sc" secondAttribute="bottom" constant="8.5" id="8Zo-kz-KN2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="EE5-jI-jz5" secondAttribute="trailing" id="ETH-mQ-CdP"/>
-                            <constraint firstItem="EE5-jI-jz5" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="K3F-el-XZ3"/>
-                            <constraint firstItem="EE5-jI-jz5" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-4" id="MxW-LS-64N"/>
-                            <constraint firstItem="EE5-jI-jz5" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="281:667" id="VBi-tS-Sjf"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="vBW-xo-4sc" secondAttribute="leading" id="Wot-UX-n7g"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vBW-xo-4sc" secondAttribute="trailing" id="q6h-ng-EHD"/>
-                            <constraint firstItem="EE5-jI-jz5" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="weA-N3-h9i"/>
-                            <constraint firstItem="EE5-jI-jz5" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="347:667" id="xMt-5Q-BY2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vBW-xo-4sc" secondAttribute="trailing" id="4up-XA-K7n"/>
+                            <constraint firstItem="EE5-jI-jz5" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-4" id="IiF-WW-AlN"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="vBW-xo-4sc" secondAttribute="leading" id="WCo-Ne-Bl9"/>
+                            <constraint firstItem="EE5-jI-jz5" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="fuG-yn-C8e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EE5-jI-jz5" secondAttribute="trailing" constant="-4" id="gHp-j6-wvw"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="vBW-xo-4sc" secondAttribute="bottom" constant="8.5" id="oxw-qN-9XU"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="VBi-tS-Sjf"/>
-                                <exclude reference="weA-N3-h9i"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>

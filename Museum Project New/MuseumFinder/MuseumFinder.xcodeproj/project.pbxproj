@@ -18,10 +18,11 @@
 		33240C601BA5EFDA004D3D35 /* venues_controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240C591BA5EFDA004D3D35 /* venues_controller.swift */; };
 		33240C611BA5EFDA004D3D35 /* add_controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240C5A1BA5EFDA004D3D35 /* add_controller.swift */; };
 		33240C621BA5EFDA004D3D35 /* category_controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240C5B1BA5EFDA004D3D35 /* category_controller.swift */; };
-		33240C631BA5EFDA004D3D35 /* search_controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240C5C1BA5EFDA004D3D35 /* search_controller.swift */; };
 		33240C641BA5EFDA004D3D35 /* detail_controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240C5D1BA5EFDA004D3D35 /* detail_controller.swift */; };
 		33240C651BA5EFDA004D3D35 /* help_controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240C5E1BA5EFDA004D3D35 /* help_controller.swift */; };
-		33240C661BA5EFDA004D3D35 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240C5F1BA5EFDA004D3D35 /* CheckBox.swift */; };
+		333158301BA8732A00361D89 /* back_button3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3331582F1BA8732A00361D89 /* back_button3.png */; };
+		333158321BA8787C00361D89 /* back_button4.png in Resources */ = {isa = PBXBuildFile; fileRef = 333158311BA8787C00361D89 /* back_button4.png */; };
+		33CB3B981BAA3BC30063B80F /* go_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB3B971BAA3BC30063B80F /* go_button.png */; };
 		33E5A50C1BA5F1FB006E5B39 /* ART.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A4FD1BA5F1FB006E5B39 /* ART.png */; };
 		33E5A50D1BA5F1FB006E5B39 /* BOT.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A4FE1BA5F1FB006E5B39 /* BOT.png */; };
 		33E5A50E1BA5F1FB006E5B39 /* CMU.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A4FF1BA5F1FB006E5B39 /* CMU.png */; };
@@ -31,7 +32,6 @@
 		33E5A5121BA5F1FB006E5B39 /* NAT.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A5031BA5F1FB006E5B39 /* NAT.png */; };
 		33E5A5131BA5F1FB006E5B39 /* SCI.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A5041BA5F1FB006E5B39 /* SCI.png */; };
 		33E5A5141BA5F1FB006E5B39 /* ZAW.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A5051BA5F1FB006E5B39 /* ZAW.png */; };
-		33E5A5151BA5F1FB006E5B39 /* bentArrow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A5061BA5F1FB006E5B39 /* bentArrow.jpg */; };
 		33E5A5161BA5F1FB006E5B39 /* phoneIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A5071BA5F1FB006E5B39 /* phoneIcon.png */; };
 		33E5A5171BA5F1FB006E5B39 /* listView.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A5081BA5F1FB006E5B39 /* listView.png */; };
 		33E5A5181BA5F1FB006E5B39 /* appleMaps.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A5091BA5F1FB006E5B39 /* appleMaps.jpg */; };
@@ -58,13 +58,13 @@
 
 /* Begin PBXFileReference section */
 		33240C251BA5EF47004D3D35 /* MuseumFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseumFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		33240C281BA5EF47004D3D35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		33240C281BA5EF47004D3D35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MuseumFinder/AppDelegate.swift; sourceTree = "<group>"; };
 		33240C2A1BA5EF47004D3D35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		33240C2D1BA5EF47004D3D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		33240C301BA5EF47004D3D35 /* MuseumFinder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MuseumFinder.xcdatamodel; sourceTree = "<group>"; };
-		33240C321BA5EF47004D3D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		33240C321BA5EF47004D3D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MuseumFinder/Assets.xcassets; sourceTree = "<group>"; };
 		33240C351BA5EF47004D3D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		33240C371BA5EF47004D3D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33240C371BA5EF47004D3D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MuseumFinder/Info.plist; sourceTree = "<group>"; };
 		33240C3C1BA5EF47004D3D35 /* MuseumFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuseumFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33240C401BA5EF47004D3D35 /* MuseumFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseumFinderTests.swift; sourceTree = "<group>"; };
 		33240C421BA5EF47004D3D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,10 +74,11 @@
 		33240C591BA5EFDA004D3D35 /* venues_controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = venues_controller.swift; sourceTree = "<group>"; };
 		33240C5A1BA5EFDA004D3D35 /* add_controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = add_controller.swift; sourceTree = "<group>"; };
 		33240C5B1BA5EFDA004D3D35 /* category_controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = category_controller.swift; sourceTree = "<group>"; };
-		33240C5C1BA5EFDA004D3D35 /* search_controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = search_controller.swift; sourceTree = "<group>"; };
 		33240C5D1BA5EFDA004D3D35 /* detail_controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detail_controller.swift; sourceTree = "<group>"; };
 		33240C5E1BA5EFDA004D3D35 /* help_controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = help_controller.swift; sourceTree = "<group>"; };
-		33240C5F1BA5EFDA004D3D35 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		3331582F1BA8732A00361D89 /* back_button3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back_button3.png; path = ../../../back_button3.png; sourceTree = "<group>"; };
+		333158311BA8787C00361D89 /* back_button4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back_button4.png; path = ../../../back_button4.png; sourceTree = "<group>"; };
+		33CB3B971BAA3BC30063B80F /* go_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = go_button.png; path = ../../../go_button.png; sourceTree = "<group>"; };
 		33E5A4FD1BA5F1FB006E5B39 /* ART.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ART.png; path = ../../musuem_app/ART.png; sourceTree = "<group>"; };
 		33E5A4FE1BA5F1FB006E5B39 /* BOT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BOT.png; path = ../../musuem_app/BOT.png; sourceTree = "<group>"; };
 		33E5A4FF1BA5F1FB006E5B39 /* CMU.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CMU.png; path = ../../musuem_app/CMU.png; sourceTree = "<group>"; };
@@ -87,7 +88,6 @@
 		33E5A5031BA5F1FB006E5B39 /* NAT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NAT.png; path = ../../musuem_app/NAT.png; sourceTree = "<group>"; };
 		33E5A5041BA5F1FB006E5B39 /* SCI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SCI.png; path = ../../musuem_app/SCI.png; sourceTree = "<group>"; };
 		33E5A5051BA5F1FB006E5B39 /* ZAW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ZAW.png; path = ../../musuem_app/ZAW.png; sourceTree = "<group>"; };
-		33E5A5061BA5F1FB006E5B39 /* bentArrow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bentArrow.jpg; path = ../../musuem_app/bentArrow.jpg; sourceTree = "<group>"; };
 		33E5A5071BA5F1FB006E5B39 /* phoneIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = phoneIcon.png; path = ../../musuem_app/phoneIcon.png; sourceTree = "<group>"; };
 		33E5A5081BA5F1FB006E5B39 /* listView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = listView.png; path = ../../musuem_app/listView.png; sourceTree = "<group>"; };
 		33E5A5091BA5F1FB006E5B39 /* appleMaps.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = appleMaps.jpg; path = ../../musuem_app/appleMaps.jpg; sourceTree = "<group>"; };
@@ -125,6 +125,7 @@
 			children = (
 				33E5A4FC1BA5F1EA006E5B39 /* Images */,
 				33240C271BA5EF47004D3D35 /* MuseumFinder */,
+				333158261BA8620E00361D89 /* Supporting Files */,
 				33240C3F1BA5EF47004D3D35 /* MuseumFinderTests */,
 				33240C4A1BA5EF47004D3D35 /* MuseumFinderUITests */,
 				33240C261BA5EF47004D3D35 /* Products */,
@@ -144,20 +145,13 @@
 		33240C271BA5EF47004D3D35 /* MuseumFinder */ = {
 			isa = PBXGroup;
 			children = (
-				33240C281BA5EF47004D3D35 /* AppDelegate.swift */,
+				33240C2C1BA5EF47004D3D35 /* Main.storyboard */,
 				33240C2A1BA5EF47004D3D35 /* ViewController.swift */,
 				33240C591BA5EFDA004D3D35 /* venues_controller.swift */,
 				33240C5A1BA5EFDA004D3D35 /* add_controller.swift */,
 				33240C5B1BA5EFDA004D3D35 /* category_controller.swift */,
-				33240C5C1BA5EFDA004D3D35 /* search_controller.swift */,
 				33240C5D1BA5EFDA004D3D35 /* detail_controller.swift */,
 				33240C5E1BA5EFDA004D3D35 /* help_controller.swift */,
-				33240C5F1BA5EFDA004D3D35 /* CheckBox.swift */,
-				33240C2C1BA5EF47004D3D35 /* Main.storyboard */,
-				33240C321BA5EF47004D3D35 /* Assets.xcassets */,
-				33240C341BA5EF47004D3D35 /* LaunchScreen.storyboard */,
-				33240C371BA5EF47004D3D35 /* Info.plist */,
-				33240C2F1BA5EF47004D3D35 /* MuseumFinder.xcdatamodeld */,
 			);
 			path = MuseumFinder;
 			sourceTree = "<group>";
@@ -180,6 +174,18 @@
 			path = MuseumFinderUITests;
 			sourceTree = "<group>";
 		};
+		333158261BA8620E00361D89 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				33240C281BA5EF47004D3D35 /* AppDelegate.swift */,
+				33240C321BA5EF47004D3D35 /* Assets.xcassets */,
+				33240C341BA5EF47004D3D35 /* LaunchScreen.storyboard */,
+				33240C371BA5EF47004D3D35 /* Info.plist */,
+				33240C2F1BA5EF47004D3D35 /* MuseumFinder.xcdatamodeld */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		33E5A4FC1BA5F1EA006E5B39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,12 +195,14 @@
 				33E5A5001BA5F1FB006E5B39 /* GMU.png */,
 				33E5A5011BA5F1FB006E5B39 /* HSC.png */,
 				33E5A5021BA5F1FB006E5B39 /* HST.png */,
+				33CB3B971BAA3BC30063B80F /* go_button.png */,
 				33E5A5031BA5F1FB006E5B39 /* NAT.png */,
 				33E5A5041BA5F1FB006E5B39 /* SCI.png */,
+				333158311BA8787C00361D89 /* back_button4.png */,
 				33E5A5051BA5F1FB006E5B39 /* ZAW.png */,
-				33E5A5061BA5F1FB006E5B39 /* bentArrow.jpg */,
 				33E5A5071BA5F1FB006E5B39 /* phoneIcon.png */,
 				33E5A5081BA5F1FB006E5B39 /* listView.png */,
+				3331582F1BA8732A00361D89 /* back_button3.png */,
 				33E5A5091BA5F1FB006E5B39 /* appleMaps.jpg */,
 				33E5A50A1BA5F1FB006E5B39 /* safariIcon.jpg */,
 				33E5A50B1BA5F1FB006E5B39 /* LaunchImage.png */,
@@ -269,6 +277,7 @@
 				TargetAttributes = {
 					33240C241BA5EF47004D3D35 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = UWWE846VDM;
 					};
 					33240C3B1BA5EF47004D3D35 = {
 						CreatedOnToolsVersion = 7.0;
@@ -310,14 +319,16 @@
 				33E5A5141BA5F1FB006E5B39 /* ZAW.png in Resources */,
 				33E5A5111BA5F1FB006E5B39 /* HST.png in Resources */,
 				33E5A51A1BA5F1FB006E5B39 /* LaunchImage.png in Resources */,
+				333158321BA8787C00361D89 /* back_button4.png in Resources */,
 				33E5A5101BA5F1FB006E5B39 /* HSC.png in Resources */,
 				33E5A50D1BA5F1FB006E5B39 /* BOT.png in Resources */,
-				33E5A5151BA5F1FB006E5B39 /* bentArrow.jpg in Resources */,
+				33CB3B981BAA3BC30063B80F /* go_button.png in Resources */,
 				33240C361BA5EF47004D3D35 /* LaunchScreen.storyboard in Resources */,
 				33E5A50C1BA5F1FB006E5B39 /* ART.png in Resources */,
 				33E5A5161BA5F1FB006E5B39 /* phoneIcon.png in Resources */,
 				33E5A5121BA5F1FB006E5B39 /* NAT.png in Resources */,
 				33E5A5191BA5F1FB006E5B39 /* safariIcon.jpg in Resources */,
+				333158301BA8732A00361D89 /* back_button3.png in Resources */,
 				33E5A50F1BA5F1FB006E5B39 /* GMU.png in Resources */,
 				33E5A50E1BA5F1FB006E5B39 /* CMU.png in Resources */,
 				33E5A5171BA5F1FB006E5B39 /* listView.png in Resources */,
@@ -353,11 +364,9 @@
 				33240C611BA5EFDA004D3D35 /* add_controller.swift in Sources */,
 				33240C621BA5EFDA004D3D35 /* category_controller.swift in Sources */,
 				33240C311BA5EF47004D3D35 /* MuseumFinder.xcdatamodeld in Sources */,
-				33240C661BA5EFDA004D3D35 /* CheckBox.swift in Sources */,
 				33240C2B1BA5EF47004D3D35 /* ViewController.swift in Sources */,
 				33240C291BA5EF47004D3D35 /* AppDelegate.swift in Sources */,
 				33240C651BA5EFDA004D3D35 /* help_controller.swift in Sources */,
-				33240C631BA5EFDA004D3D35 /* search_controller.swift in Sources */,
 				33240C601BA5EFDA004D3D35 /* venues_controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +417,7 @@
 				33240C351BA5EF47004D3D35 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = MuseumFinder;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -499,10 +509,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MuseumFinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Drexel-AppLab.MuseumFinder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -512,10 +525,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MuseumFinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Drexel-AppLab.MuseumFinder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -525,6 +541,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MuseumFinderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Drexel-AppLab.MuseumFinderTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -537,6 +554,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MuseumFinderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Drexel-AppLab.MuseumFinderTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -548,6 +566,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = MuseumFinderUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Drexel-AppLab.MuseumFinderUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -560,6 +579,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = MuseumFinderUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Drexel-AppLab.MuseumFinderUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -616,7 +636,8 @@
 				33240C301BA5EF47004D3D35 /* MuseumFinder.xcdatamodel */,
 			);
 			currentVersion = 33240C301BA5EF47004D3D35 /* MuseumFinder.xcdatamodel */;
-			path = MuseumFinder.xcdatamodeld;
+			name = MuseumFinder.xcdatamodeld;
+			path = MuseumFinder/MuseumFinder.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

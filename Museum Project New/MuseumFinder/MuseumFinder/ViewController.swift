@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 
-public var radius = 2500
+// made a few public variable to pass information among controller classes, probably better to use prepforsegue method
 public var myMusuemData :  Array<NSDictionary> = []
 public var centerCoordinate = CLLocationCoordinate2D()
 public var myerror = UIAlertView()
@@ -21,15 +21,14 @@ public var myerror = UIAlertView()
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate{
     
-    //    @IBOutlet var actIndict: UIActivityIndicatorView!
     
-    
+    // declaring and initalizing variables
+    var radius = 1263
+    var annotationArray = [CustomPointAnnotation]()
     var locationManager = CLLocationManager()
     var geocoder = CLGeocoder()
-    let buttonItem: MKUserTrackingBarButtonItem = MKUserTrackingBarButtonItem()
+    let buttonItem = MKUserTrackingBarButtonItem()
     var resultSearchController = UISearchController()
-    
-    //    let queue:NSOperationQueue = NSOperationQueue()
     
     
     @IBOutlet var bottomNavigation: UINavigationItem!
@@ -46,16 +45,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
-        
+        // setting the find me button to the bottom right of my screen
         buttonItem.mapView = myMapView
         self.bottomNavigation.rightBarButtonItem = buttonItem
         buttonItem.target = self
         
+        //setting up the search bar and all its properties with the results view at the top
         self.resultSearchController = ({
-            
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
@@ -65,27 +63,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             controller.searchBar.backgroundColor = UIColor.grayColor()
             controller.searchBar.placeholder = "Search all by name"
             self.tblView.tableHeaderView = controller.searchBar
-            
-            
             return controller
-            
+
             
         })()
         
-        resultSearchController.searchBar.delegate = self
         
+        // initial setup and delegation
+        resultSearchController.searchBar.delegate = self
         tblView.delegate = self
         tblView.dataSource = self
-        
-        
         self.tblView.reloadData()
         tblView.hidden = true
         
         
+        //initial map does not show points of interest since it is too much information for the first view
         
         myMapView.showsPointsOfInterest = false
-        
-        
         
         if enteredLoc == ""
         {
@@ -103,24 +97,33 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         
+        // this method sets up all the mapview in response to which view controller sent the request
+        
+        //if it is from the add screen and there is an entered location
         if enteredLoc != "" && fromAdd
         {
+            // parse the given address and set the bool back to false
             findByAddress(enteredLoc)
             fromAdd = false
         }
         
         
-        
+        // if it is from the categories controller
         if fromCat
         {
+            // if there is no entered location
             if enteredLoc == ""
             {
+                // resend the query with the new category information
                 getMyLoc()
                 
             }else{
+                
+                // if there is an entered location then send a query at that location
                 findByAddress(enteredLoc)
             }
             
+            //reset the bool
             fromCat = false
         }
         
@@ -138,8 +141,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func findByAddress(enteredLoc : String){
         
+        // this method parses the given string, finds the location and updates the mapview around that region
         geocoder.geocodeAddressString(enteredLoc) { (placemarks:[CLPlacemark]?, error) -> Void in
             
+            // if there is an error,show and log it
             if(error != nil) {
                 
                 myerror.title = "Error"
@@ -150,18 +155,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 print("Error Geocoding String")
             
             }else{
+                // get the geocoded placemark, find the location and setup the map at that location
                 let placemark = placemarks![0]
                 let location = placemark.location!
                 
                 self.makeMap(location)
                 self.myMapView.addAnnotation(MKPlacemark(placemark: placemark))
-                self.updateMusuems(location)
                 
                 
-                
+                // sets the center coordinate to the value of this location
                 centerCoordinate.latitude = location.coordinate.latitude
                 centerCoordinate.longitude = location.coordinate.longitude
                 
+                
+                // sets the annotation's callout to the name of the placemark
                 let ann = MKPointAnnotation()
                 ann.coordinate = centerCoordinate
                 
@@ -203,13 +210,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
-    
+    // method that gets called everytime the user clicks on the find me button
     
     func mapView(mapView: MKMapView, didChangeUserTrackingMode mode: MKUserTrackingMode, animated: Bool) {
         
+        //hides the search results view
         tblView.hidden = true
         resultSearchController.active = false
         
+        // if it is set on follow then reset the location info and get device's location
         if mode == MKUserTrackingMode.Follow{
             enteredLoc=""
             fromMyLoc = true
@@ -218,7 +227,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     
-    
+    // starts updating the location
     func getMyLoc(){
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -229,23 +238,26 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
+    //method that gets called everytime the device is asked to update it's location
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        //stop updating,get the last location and make the map around it
         
         locationManager.stopUpdatingLocation()
         
         let location = locations.last!
         
         makeMap(location)
-        updateMusuems(location)
         myMapView.showsUserLocation = true
         
+        //set the center coordinate value to this location's coordinate
         centerCoordinate.latitude = location.coordinate.latitude
         centerCoordinate.longitude = location.coordinate.longitude
     }
     
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        
+        // if ther was an error updating the location
         myerror.title = "Error"
         myerror.message = "Cannot determine Location"
         myerror.addButtonWithTitle("OK")
@@ -267,54 +279,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
-    
+    //method that gets called everytime the user wants to see the museums in their mapview
+    //storyboard seegue might be better
+    //here just incase we want to implement some sort of progress bar
     
     @IBAction func venuesPresed(sender: AnyObject) {
-        
-        //        let myString = "tel://9809088798"
-        //
-        //        println(UIApplication.sharedApplication().canOpenURL(NSURL(string : myString)!))
-        //
-        //        UIApplication.sharedApplication().openURL( NSURL(string : myString)!)
-        
-        
-        //        let spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
-        //        spinner.frame = CGRectMake(round((view.frame.size.width - 25) / 2), round((view.frame.size.height - 25) / 2), 25, 25)
-        //        spinner.color = UIColor.blueColor().colorWithAlphaComponent(0.6)
-        //        spinner.hidesWhenStopped = true
-        //
-        //        self.view.addSubview(spinner)
-        //        spinner.startAnimating()
-        //        spinner.stopAnimating()
-        //        spinner.startAnimating()
-        //        spinner.stopAnimating()
-        //        spinner.startAnimating()
-        
-        
-        
-        self.performSegueWithIdentifier("venueSegue", sender: sender)
+        // show progress bar or indicator for this
+            self.performSegueWithIdentifier("venueSegue", sender: sender)
     }
     
     
     
     
     
-    func switchIndOnOff(){
-        
-        
-        
-        //        if self.actIndict.hidden == true {
-        //            self.actIndict.hidden = false
-        //        }else{
-        //            self.actIndict.hidden = true
-        //        }
-    }
     
-    
-    
-    
+    // if the search icon is pressed, it either drops down the search bar or hides it
     @IBAction func pressed(sender: AnyObject) {
-        print("show/hide searchbar")
         if mapShown {
             tblView.hidden = false
             mapShown = false
@@ -330,7 +310,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
-    
+    // method that makes the map around a certain location
     func makeMap(location : CLLocation){
         
         let region = MKCoordinateRegion(
@@ -338,6 +318,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 longitude: location.coordinate.longitude),
             span: MKCoordinateSpanMake(0.015, 0.015))
         
+        
+        
+        //only updates the mapview if its called from find me button or there is no entered location
         
         if fromMyLoc || enteredLoc != ""{
             myMapView.setRegion(region, animated: true)
@@ -352,6 +335,32 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
+    // method that gets called everytime the region of the mapview changes
+    
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        
+        //hides the searchbar results view
+        tblView.hidden = true
+        resultSearchController.active = false
+        
+        // You first have to get the corner point and convert it to a coordinate
+        let  mapRect = self.myMapView.visibleMapRect;
+        let  cornerPointNW = MKMapPointMake(mapRect.origin.x, mapRect.origin.y);
+        let cornerCoordinate = MKCoordinateForMapPoint(cornerPointNW);
+        let cornerLoc = CLLocation(latitude: cornerCoordinate.latitude, longitude: cornerCoordinate.longitude)
+        
+        // Then get the center coordinate of the mapView 
+        let centerCoordinate = self.myMapView.centerCoordinate
+        let centerLoc = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
+        
+        // And then calculate the distance
+        let distance = cornerLoc.distanceFromLocation(centerLoc)
+        radius = Int(round(distance))
+        
+        //then update the museums around that location
+        updateMusuems(centerLoc)
+    }
     
     
     
@@ -360,39 +369,52 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
+    
+    //method that gets called everytime you want to update the museums in the mapview
     func updateMusuems(loc: CLLocation){
         
+        //removes all the old annotations
         self.myMapView.removeAnnotations(self.myMapView.annotations)
         
+        //sets a cap on the radius
+        if radius > 20000{
+        radius = 20000
+        }
+        
+        //sets the query url up
         var urlPath = "https://data.imls.gov/resource/bqh6-bapa.json?$select=location,commonname,phone,discipl,weburl&$where=within_circle(location,\(loc.coordinate.latitude),\(loc.coordinate.longitude),\(radius))"
         
-        
+        //if there is a certain category the user wants to look at then add that to the query path
         if musCatArray.count >= 1
         {
             urlPath = urlPath + catString.stringByReplacingOccurrencesOfString(" ", withString: "%20")
             
         }
         
+        
         print(urlPath)
         
+        //convert to url and send the query
         let url = NSURL(string: urlPath)
         
+        // if you can set the contens of the query to a variable
         if let musuemData=NSData(contentsOfURL:url!){
-           do{
+            
+            do{
+                //parse the data
                 let positions: AnyObject! = try NSJSONSerialization.JSONObjectWithData(musuemData, options: NSJSONReadingOptions(rawValue: 0))
                 
+                //convert to array
                 var json = positions as! Array<NSDictionary>
-                
                 if json.count >= 1 {
                     
+                    //set to a public property to be suer by another controller
                     myMusuemData=json
+                    
+                    //add the annotation
                     self.makeAnnotations(json)
                     
-                    venues_controller().getMyMusuemNames()
-                    
-                    
-                    
-                    
+                    //remove all th values from my array
                     json.removeAll(keepCapacity: false)
                     
                 }else{
@@ -402,38 +424,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }catch{error}
             
         }else{
-            
+            //if there is an error
             myerror.title = "Error"
             myerror.message = "Could not connect to server"
             myerror.addButtonWithTitle("OK")
             myerror.show()
         }
-        
-        
-        //        let task: Void = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-        //
-        //            if error != nil {
-        //            println(error)
-        //            }
-        //
-        //            if let positions: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil){
-        //
-        //                if let json = positions as? Array<NSDictionary> {
-        //                    if json.count >= 1 {
-        //
-        //                        myMusuemData=json
-        //                        self.makeAnnotations(json)
-        //                        println("Updated")
-        //
-        //                    }else{
-        //                        println("No points to plot/annotate")
-        //                    }
-        //
-        //
-        //                }
-        //            }
-        //
-        //        }.resume()
         
     }
     
@@ -447,10 +443,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func makeAnnotations(json : Array<AnyObject>){
         
-        //do I need this line?
-        self.myMapView.removeAnnotations(self.myMapView.annotations)
         
+        //if ther is one or more values in the array
         if json.count >= 1 {
+            
+            //for every value, get the info(discipl,commonname,location...),parse them and add them to the annotation array
             for index in 0...json.count-1{
                 
                 let myEntry: AnyObject = json[index]
@@ -458,11 +455,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 let musName:String = myEntry["commonname"] as! String
                 let myLoc : AnyObject! = myEntry["location"]
                 
-                // makes the annotation
                 
+                
+                
+                
+                //make a custom point annotation
                 let annotation = CustomPointAnnotation()
                 
                 
+                // sets the address to the subtitle
                 if let human_address : AnyObject! = myLoc["human_address"]
                 {
                     
@@ -472,20 +473,32 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     
                 }
                 
-                
+                //sets the name to the title
                 annotation.title = musName
                 
+                //sets the coordinate to the mus's location
                 annotation.coordinate = CLLocationCoordinate2DMake(
                     numberFormatter.numberFromString(myLoc["latitude"] as! String)!.doubleValue,
                     numberFormatter.numberFromString(myLoc["longitude"] as! String)!.doubleValue)
                 
                 
+                //the names of the images must directly coorelate to the value for the discipl field from the API for this line to work
                 annotation.imageName = discipl
                 
-                self.myMapView.addAnnotation(annotation)
+                //add the annotation to an array
+                annotationArray.append(annotation)
             }
             
+            
+            //remove the old annotations and add the new ones
+        self.myMapView.removeAnnotations(self.myMapView.annotations)
+        self.myMapView.addAnnotations(annotationArray)
+            
+            //remove all the annotation from the annotation array
+        annotationArray.removeAll(keepCapacity: false)
+        
         }else{
+            // if there are no museums
             myerror.title = "Error"
             myerror.message = "No museums to show"
             myerror.addButtonWithTitle("OK")
@@ -495,35 +508,37 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
+    
+    
+    
+    
+    
+    
+    //delegate method that gets called everytime you add an annotation
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
+        //if the annotation is not a CPA then return nil
         if !(annotation is CustomPointAnnotation) {
             return nil
         }
         
-        
-        
-        
+        //create an annotation view
         let reuseId = "test"
         var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
         
-        
-        
-        
-        
+        // if the view is empty set it up
         if anView == nil {
             anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             anView!.canShowCallout = true
             anView!.draggable = false
+            
+            //set the right button as detail disclosure
             anView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.DetailDisclosure)
             
-            
+            //set the left button to "go"
             let directionsButton: UIButton = UIButton(type: UIButtonType.System)
-            directionsButton.frame = CGRectMake(0, 0, 23, 23)
-            directionsButton.setTitle("GO", forState: .Normal)
-            directionsButton.titleLabel?.font = UIFont.systemFontOfSize(14.5)
-            
-            //            directionsButton.setBackgroundImage(UIImage(named: "bentArrow.jpg") as UIImage?, forState: .Normal)
+            directionsButton.frame = CGRectMake(0, 0, 26, 25)
+            directionsButton.setBackgroundImage(UIImage(named: "go_button") as UIImage?, forState: .Normal)
             
             anView!.leftCalloutAccessoryView = directionsButton
             
@@ -533,7 +548,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             anView!.annotation = annotation
         }
         
-        
+        //set the image for the view
         let cpa = annotation as! CustomPointAnnotation
         anView!.image = UIImage(named:cpa.imageName)
         
@@ -550,28 +565,29 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
-    
+    //method that gets called if the callout is tapped
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         
+        //gets the name of the callout/museum
         let extString = NSURL(fileURLWithPath: view.annotation!.title!!).relativeString!.stringByReplacingOccurrencesOfString("&", withString: "%26").stringByReplacingOccurrencesOfString("+", withString: "%2B")
         
         
-        
+        //if its the right then show the detail controller
         if control == view.rightCalloutAccessoryView{
             
-            
             myNewURLPath  = "https://data.imls.gov/resource/bqh6-bapa.json?commonname=\(extString)&$select=location,commonname,phone,weburl,discipl"
-            
-            let storyboard = UIStoryboard(name: "Main" , bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("detailViewController")
-            self.showViewController(vc, sender: self)
+        
+            self.performSegueWithIdentifier("detailSegue", sender: nil)
             
             
             
         }else if control == view.leftCalloutAccessoryView
         {
-            // look for it in myMusdata instead of sending a query
+            
+            
+            //if its the left button then go to maps and show the user how to get to the location
+            // look for it in myMusdata instead of sending a query?
             
             let urlPath = "https://data.imls.gov/resource/bqh6-bapa.json?commonname=\(extString)&$select=location,commonname"
             let url = NSURL(string: urlPath)
@@ -579,7 +595,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             if let musuemData=NSData(contentsOfURL:url!){
                 
                 
-                do {let positions: AnyObject! = try NSJSONSerialization.JSONObjectWithData(musuemData, options: NSJSONReadingOptions(rawValue: 0))
+                do {
+                    let positions: AnyObject! = try NSJSONSerialization.JSONObjectWithData(musuemData, options: NSJSONReadingOptions(rawValue: 0))
                     
                     
                     var json = positions as! Array<NSDictionary>
@@ -611,7 +628,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         json.removeAll(keepCapacity: false)
                         
                         
-                        
+                        //opens maps with the required information
                         MKMapItem.openMapsWithItems([currentLoc, selectedLoc], launchOptions: launchOptions)
                         
                         
@@ -637,38 +654,38 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
-    //    @IBOutlet var searchBar: UISearchBar!
-    //    @IBOutlet var tableView: UITableView!
+    // Search bar and updater
     
+    
+    
+    //declaring the properties
     var data:[String] = []
     var adresses:[String] = []
     var filtered:[String] = []
+    
+    //the amount of matches you want returned
     var limit = 5
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
+    //number of sections
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     
-    
+    //number of rows in each section
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return data.count;
     }
     
     
+    
+    
+    //sets the information for every cell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("cellforrow")
+        
         
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier:"addCategoryCell")
         cell.selectionStyle =  UITableViewCellSelectionStyle.Blue
@@ -698,13 +715,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
-    
+    //everytime the user adds a new charcter then send the query and update the table view
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
         sendQueryAndGetNames()
-        
-        
-        tblView.reloadData()
+        self.tblView.reloadData()
         
         print("updateSearchResultsForSearchController")
         
@@ -713,38 +728,27 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
-    
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        print("BeginEditing")
-    }
-    
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        print("EndEditing")
-    }
-    
-    
-    
-    
+    // if a cell is selected
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        //deselct the row
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        
+        //prep the query
         let ext = NSURL(fileURLWithPath: (tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text)!)
         
         let extString = ext.relativeString!.stringByReplacingOccurrencesOfString("&", withString: "%26").stringByReplacingOccurrencesOfString("+", withString: "%2B")
         
         myNewURLPath = "https://data.imls.gov/resource/bqh6-bapa.json?commonname=\(extString)&$select=location,commonname,phone,weburl,discipl"
-        let storyboard = UIStoryboard(name: "Main" , bundle: nil)
         
         
-        
-        
+        //hides the table view
         tblView.hidden = true
         resultSearchController.active = false
         
-        
-        let vc = storyboard.instantiateViewControllerWithIdentifier("detailViewController")
+        //show the details view
+        let storyboard = UIStoryboard(name: "Main" , bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("detailController")
         self.showViewController(vc, sender: self)
         
         }
@@ -754,25 +758,30 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     
-    
+    //method that sends the query when the text changes
     func sendQueryAndGetNames(){
-        var queryPath = "https://data.imls.gov/resource/bqh6-bapa.json?$select=commonname,location&$limit=\(limit)&$q=(\(resultSearchController.searchBar.text))"
+        
+        //prep the query
+        var queryPath = "https://data.imls.gov/resource/bqh6-bapa.json?$select=commonname,location&$limit=\(limit)&$q=(\(resultSearchController.searchBar.text!))"
+        print(queryPath)
         queryPath = queryPath.stringByReplacingOccurrencesOfString(" ", withString: "%20")
         
         
+        //sends the query with the tet from the search bar
         if let queryURL=NSURL(string: queryPath){
             if let positionData=NSData(contentsOfURL:queryURL){
-                
-                
-                
-                do{let positions: AnyObject! = try NSJSONSerialization.JSONObjectWithData(positionData, options: NSJSONReadingOptions(rawValue: 0))
-                    
+                do{
+                    let positions: AnyObject! = try NSJSONSerialization.JSONObjectWithData(positionData, options: NSJSONReadingOptions(rawValue: 0))
                     if let json = positions as? Array<NSDictionary> {
                         if json.count >= 1 {
                             
+                            
+                            //removes the previous info
                             data.removeAll(keepCapacity: false)
                             adresses.removeAll(keepCapacity: false)
                             
+                            
+                            //parses the info and add it to the array
                             for index in 0...json.count-1{
                                 
                                 let myEntry = json[index]
@@ -781,9 +790,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                                 }
                                 
                                 
-                                
+                                //get the location
                                 let myLoc : AnyObject! = myEntry["location"]
                                 
+                                
+                                //get the address and append it to the address array
                                 if let human_address : AnyObject! = myLoc["human_address"]
                                     
                                 {
@@ -791,20 +802,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                                     
                                     adresses.append(partialAddress)
                                 }
-                                
-                                
-                                
-                                
                             }
                         }else{
+                            //remove all the previous info
                             data.removeAll(keepCapacity: false)
                             adresses.removeAll(keepCapacity: false)
                             print("No Matches")
                         }
                     }
                 }catch{error}
-            }else{
                 
+            }else{
+                //if there is an error sending the query
                 myerror.title = "Error"
                 myerror.message = "Couldn't connect to Server"
                 myerror.addButtonWithTitle("OK")
@@ -830,7 +839,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 }
 
 
-
+// the custom class that has the string for the image name
 class CustomPointAnnotation: MKPointAnnotation {
     var imageName: String!
 }

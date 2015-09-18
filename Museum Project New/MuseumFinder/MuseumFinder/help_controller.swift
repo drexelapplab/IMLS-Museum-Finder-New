@@ -10,8 +10,8 @@ import UIKit
 
 class help_controller: UIViewController {
     
+    @IBOutlet var nav: UINavigationItem!
     
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,13 +21,10 @@ class help_controller: UIViewController {
     
     
     
-    
+    //dimisses the controller if the back button is pressed
     @IBAction func backPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
-    
     
     
     

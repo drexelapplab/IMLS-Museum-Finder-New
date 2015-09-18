@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "go_button.png",
       "scale" : "1x"
     },
     {
