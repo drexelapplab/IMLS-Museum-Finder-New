@@ -33,9 +33,9 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
-            controller.searchBar.barStyle = UIBarStyle.Black
-            controller.searchBar.barTintColor = UIColor.whiteColor()
-            controller.searchBar.backgroundColor = UIColor.grayColor()
+            controller.searchBar.barStyle = UIBarStyle.Default
+            controller.searchBar.barTintColor = UIColor.grayColor()
+            controller.searchBar.backgroundColor = UIColor.whiteColor()
             controller.searchBar.placeholder = "Search this list by name"
             controller.hidesNavigationBarDuringPresentation = false
             controller.searchBar.sizeToFit()

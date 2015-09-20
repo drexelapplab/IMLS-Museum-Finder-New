@@ -58,9 +58,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
-            controller.searchBar.barStyle = UIBarStyle.Black
-            controller.searchBar.barTintColor = UIColor.whiteColor()
-            controller.searchBar.backgroundColor = UIColor.grayColor()
+            controller.searchBar.barStyle = UIBarStyle.Default
+            controller.searchBar.barTintColor = UIColor.grayColor()
+            controller.searchBar.backgroundColor = UIColor.whiteColor()
             controller.searchBar.placeholder = "Search all by name"
             self.tblView.tableHeaderView = controller.searchBar
             return controller
