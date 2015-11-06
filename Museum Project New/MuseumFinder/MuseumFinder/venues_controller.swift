@@ -11,14 +11,15 @@ import CoreLocation
 
 class venues_controller: UIViewController,UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate{
 
-
-    //declaring the properties
-    @IBOutlet var tableView: UITableView!
+    // MARK: Properties
     var searchController = UISearchController()
     var data :[String] = []
     var filtered:[String] = []
     
+    // MARK: IBOutlets
+    @IBOutlet var tableView: UITableView!
     
+    // MARK: Overrides
     
     override func viewDidLoad() {
         
@@ -44,23 +45,16 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
             
             return controller
         })()
-        
-        
-        
         // initial setup and delegation
         searchController.searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-//        self.tableView.scrollIndicatorInsets.top = 0
-//        tableView.contentInset = UIEdgeInsetsZero
+        //        self.tableView.scrollIndicatorInsets.top = 0
+        //        tableView.contentInset = UIEdgeInsetsZero
         
         self.tableView.reloadData()
     }
-    
-    
-    
-    
-    
+    // MARK: Functions
     //method that parses the info and adds the info to an array
     func getMyMusuemNames(){
         
@@ -88,59 +82,21 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
         
     }
     
+    // MARK: IBActions
     
+    // MARK: - Protocols
     
-    
-    
-    
-    
-    
-    
-   
-    
-    //method that gets called everytime the text changes
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        
-        //filters the table with the the text in the search bar
-        
-        filtered = data.filter({ (text) -> Bool in
-            
-            let tmp: NSString = text
-            let range = tmp.rangeOfString(self.searchController.searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch)
-            return range.location != NSNotFound
-            
-        })
-        
-        //if the search returns nothing then show all
-        if(filtered.count == 0){
-            filtered = data
-        }
-        
-        
-        self.tableView.reloadData()
-        print("updateSearchResultsForSearchController")
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    // MARK: TableViewDatasource, TableView Delegate
     
     //number of sections
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     
     //number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
+        
         //if the search is active then the number of rows is the filterd count
         if(self.searchController.active) {
             return filtered.count
@@ -185,7 +141,7 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
         //send the query to get all the remaining details for that museum
         let extString = NSURL(fileURLWithPath: cell.textLabel!.text!).relativeString!.stringByReplacingOccurrencesOfString("&", withString: "%26").stringByReplacingOccurrencesOfString("+", withString: "%2B")
         
-        let newurlPath = "https://data.imls.gov/resource/bqh6-bapa.json?commonname=\(extString)&$select=location,commonname"
+        let newurlPath = "https://data.imls.gov/resource/ku5e-zr2b.json?commonname=\(extString)&$select=location_1,commonname"
         
         
         if let musuemData=NSData(contentsOfURL:NSURL(string: newurlPath)!){
@@ -207,7 +163,7 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
                             
                             //gets the location of the museum and calculates the distance from your locations for every cell
                             
-                            let myLoc : AnyObject! = myEntry["location"]
+                            let myLoc : AnyObject! = myEntry["location_1"]
                             
                             
                             let muscoordinates = CLLocationCoordinate2DMake(numberFormatter.numberFromString(myLoc["latitude"] as! String)!.doubleValue, numberFormatter.numberFromString(myLoc["longitude"] as! String)!.doubleValue)
@@ -228,15 +184,15 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
                     }
                 }
             }catch{error}
-        
+            
         }
         return cell
         
     }
     
     
-        
-
+    
+    
     
     
     
@@ -254,13 +210,38 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
         
         
         let extString = NSURL(fileURLWithPath: name).relativeString!.stringByReplacingOccurrencesOfString("&", withString: "%26")
-        myNewURLPath = "https://data.imls.gov/resource/bqh6-bapa.json?$select=location,commonname,phone,weburl,discipl&commonname=\(extString)"
+        newUrlPath = "https://data.imls.gov/resource/ku5e-zr2b.json?$select=location_1,commonname,phone,weburl,discipl&commonname=\(extString)"
         
         searchController.active = false
         
         let storyboard = UIStoryboard(name: "Main" , bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("detailController")
         self.showViewController(vc, sender: self)
+    }
+    
+    // MARK: UISearchResultsUpdating, UISearchBarDelegate
+    //method that gets called everytime the text changes
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        //filters the table with the the text in the search bar
+        
+        filtered = data.filter({ (text) -> Bool in
+            
+            let tmp: NSString = text
+            let range = tmp.rangeOfString(self.searchController.searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            return range.location != NSNotFound
+            
+        })
+        
+        //if the search returns nothing then show all
+        if(filtered.count == 0){
+            filtered = data
+        }
+        
+        
+        self.tableView.reloadData()
+        print("updateSearchResultsForSearchController")
+        
     }
     
 }

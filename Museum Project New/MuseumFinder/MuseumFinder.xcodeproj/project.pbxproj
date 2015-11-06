@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		33209C411BBB87410072CE97 /* go_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 33209C401BBB87410072CE97 /* go_button.png */; settings = {ASSET_TAGS = (); }; };
-		33209C431BBB874E0072CE97 /* back_button4.png in Resources */ = {isa = PBXBuildFile; fileRef = 33209C421BBB874E0072CE97 /* back_button4.png */; settings = {ASSET_TAGS = (); }; };
-		33209C451BBB87550072CE97 /* back_button3.png in Resources */ = {isa = PBXBuildFile; fileRef = 33209C441BBB87550072CE97 /* back_button3.png */; settings = {ASSET_TAGS = (); }; };
+		33209C411BBB87410072CE97 /* go_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 33209C401BBB87410072CE97 /* go_button.png */; };
+		33209C431BBB874E0072CE97 /* back_button4.png in Resources */ = {isa = PBXBuildFile; fileRef = 33209C421BBB874E0072CE97 /* back_button4.png */; };
+		33209C451BBB87550072CE97 /* back_button3.png in Resources */ = {isa = PBXBuildFile; fileRef = 33209C441BBB87550072CE97 /* back_button3.png */; };
 		33240C291BA5EF47004D3D35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240C281BA5EF47004D3D35 /* AppDelegate.swift */; };
 		33240C2B1BA5EF47004D3D35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240C2A1BA5EF47004D3D35 /* ViewController.swift */; };
 		33240C2E1BA5EF47004D3D35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33240C2C1BA5EF47004D3D35 /* Main.storyboard */; };
 		33240C311BA5EF47004D3D35 /* MuseumFinder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33240C2F1BA5EF47004D3D35 /* MuseumFinder.xcdatamodeld */; };
-		33240C331BA5EF47004D3D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33240C321BA5EF47004D3D35 /* Assets.xcassets */; };
 		33240C361BA5EF47004D3D35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33240C341BA5EF47004D3D35 /* LaunchScreen.storyboard */; };
 		33240C411BA5EF47004D3D35 /* MuseumFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240C401BA5EF47004D3D35 /* MuseumFinderTests.swift */; };
 		33240C4C1BA5EF47004D3D35 /* MuseumFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240C4B1BA5EF47004D3D35 /* MuseumFinderUITests.swift */; };
@@ -37,6 +36,9 @@
 		33E5A5181BA5F1FB006E5B39 /* appleMaps.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A5091BA5F1FB006E5B39 /* appleMaps.jpg */; };
 		33E5A5191BA5F1FB006E5B39 /* safariIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A50A1BA5F1FB006E5B39 /* safariIcon.jpg */; };
 		33E5A51A1BA5F1FB006E5B39 /* LaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A50B1BA5F1FB006E5B39 /* LaunchImage.png */; };
+		610D0A811BE001D200A653C9 /* search_controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610D0A801BE001D200A653C9 /* search_controller.swift */; };
+		612D92071BE7DEC60005E488 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 612D92061BE7DEC60005E488 /* Assets.xcassets */; };
+		61E785171BE2B19D0083525E /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E785161BE2B19D0083525E /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +67,6 @@
 		33240C2A1BA5EF47004D3D35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		33240C2D1BA5EF47004D3D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		33240C301BA5EF47004D3D35 /* MuseumFinder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MuseumFinder.xcdatamodel; sourceTree = "<group>"; };
-		33240C321BA5EF47004D3D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MuseumFinder/Assets.xcassets; sourceTree = "<group>"; };
 		33240C351BA5EF47004D3D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33240C371BA5EF47004D3D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MuseumFinder/Info.plist; sourceTree = "<group>"; };
 		33240C3C1BA5EF47004D3D35 /* MuseumFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuseumFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +94,9 @@
 		33E5A5091BA5F1FB006E5B39 /* appleMaps.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = appleMaps.jpg; path = ../../musuem_app/appleMaps.jpg; sourceTree = "<group>"; };
 		33E5A50A1BA5F1FB006E5B39 /* safariIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = safariIcon.jpg; path = ../../musuem_app/safariIcon.jpg; sourceTree = "<group>"; };
 		33E5A50B1BA5F1FB006E5B39 /* LaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchImage.png; path = ../../musuem_app/LaunchImage.png; sourceTree = "<group>"; };
+		610D0A801BE001D200A653C9 /* search_controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = search_controller.swift; sourceTree = "<group>"; };
+		612D92061BE7DEC60005E488 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MuseumFinder/Assets.xcassets; sourceTree = "<group>"; };
+		61E785161BE2B19D0083525E /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,8 @@
 				33240C5B1BA5EFDA004D3D35 /* category_controller.swift */,
 				33240C5D1BA5EFDA004D3D35 /* detail_controller.swift */,
 				33240C5E1BA5EFDA004D3D35 /* help_controller.swift */,
+				610D0A801BE001D200A653C9 /* search_controller.swift */,
+				61E785161BE2B19D0083525E /* SwiftyJSON.swift */,
 			);
 			path = MuseumFinder;
 			sourceTree = "<group>";
@@ -178,10 +184,10 @@
 			isa = PBXGroup;
 			children = (
 				33240C281BA5EF47004D3D35 /* AppDelegate.swift */,
-				33240C321BA5EF47004D3D35 /* Assets.xcassets */,
 				33240C341BA5EF47004D3D35 /* LaunchScreen.storyboard */,
 				33240C371BA5EF47004D3D35 /* Info.plist */,
 				33240C2F1BA5EF47004D3D35 /* MuseumFinder.xcdatamodeld */,
+				612D92061BE7DEC60005E488 /* Assets.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -277,7 +283,7 @@
 				TargetAttributes = {
 					33240C241BA5EF47004D3D35 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = UWWE846VDM;
+						DevelopmentTeam = JA5LN72D3Y;
 					};
 					33240C3B1BA5EF47004D3D35 = {
 						CreatedOnToolsVersion = 7.0;
@@ -330,8 +336,8 @@
 				33209C431BBB874E0072CE97 /* back_button4.png in Resources */,
 				33E5A50F1BA5F1FB006E5B39 /* GMU.png in Resources */,
 				33E5A50E1BA5F1FB006E5B39 /* CMU.png in Resources */,
+				612D92071BE7DEC60005E488 /* Assets.xcassets in Resources */,
 				33E5A5171BA5F1FB006E5B39 /* listView.png in Resources */,
-				33240C331BA5EF47004D3D35 /* Assets.xcassets in Resources */,
 				33240C2E1BA5EF47004D3D35 /* Main.storyboard in Resources */,
 				33E5A5131BA5F1FB006E5B39 /* SCI.png in Resources */,
 				33209C451BBB87550072CE97 /* back_button3.png in Resources */,
@@ -360,8 +366,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				610D0A811BE001D200A653C9 /* search_controller.swift in Sources */,
 				33240C641BA5EFDA004D3D35 /* detail_controller.swift in Sources */,
 				33240C611BA5EFDA004D3D35 /* add_controller.swift in Sources */,
+				61E785171BE2B19D0083525E /* SwiftyJSON.swift in Sources */,
 				33240C621BA5EFDA004D3D35 /* category_controller.swift in Sources */,
 				33240C311BA5EF47004D3D35 /* MuseumFinder.xcdatamodeld in Sources */,
 				33240C2B1BA5EF47004D3D35 /* ViewController.swift in Sources */,
@@ -513,7 +521,7 @@
 				INFOPLIST_FILE = MuseumFinder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Drexel-AppLab.MuseumFinder";
+				PRODUCT_BUNDLE_IDENTIFIER = MuseumFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -524,12 +532,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Drexel University (JA5LN72D3Y)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MuseumFinder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Drexel-AppLab.MuseumFinder";
+				PRODUCT_BUNDLE_IDENTIFIER = MuseumFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

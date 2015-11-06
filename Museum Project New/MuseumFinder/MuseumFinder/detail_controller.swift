@@ -11,89 +11,76 @@ import UIKit
 import MapKit
 import CoreLocation
 
-public var myNewURLPath = ""
+// MARK: Globals
+// FIXME: remove both globals from global scope?
+public var newUrlPath = ""
 public var numberFormatter = NSNumberFormatter()
 
 
 class detail_controller: UIViewController {
 
+    // MARK: Properties
     
-    //linked up all the labels and views
+    var geocoder = CLGeocoder()
+    
+    // MARK: IBOutlets
+    
+    ///
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var disciplineLabel: UILabel!
-    
-    
     @IBOutlet var adressView: UITextView!
     @IBOutlet var phoneView: UITextView!
     @IBOutlet var websiteView: UITextView!
-    
     @IBOutlet var mapIcon: UIImageView!
     @IBOutlet var phoneIcon: UIImageView!
     @IBOutlet var safariIcon: UIImageView!
-    
     @IBOutlet var detailMap: MKMapView!
-    
-    
-    
-     var geocoder = CLGeocoder()
-    
-    
-    
-    
+    // MARK: Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // if there is a url path set for the query
-        if myNewURLPath != ""{
-        getMusuemDetails()
-        
+        if newUrlPath != ""{
+            getMusuemDetails()
+            
         }
         
     }
     
-    
-    
-    
-    
+    // MARK: Functions
     
     // sends the query and gets the museum details
     // also parse the given information
-    
     func getMusuemDetails(){
         
-    let url = NSURL(string: myNewURLPath)
+        let url = NSURL(string: newUrlPath)
         if let musuemData=NSData(contentsOfURL:url!){
             
             do{
                 let musuemInfo: AnyObject! = try NSJSONSerialization.JSONObjectWithData(musuemData, options: NSJSONReadingOptions(rawValue: 0))
-            
-            
+                
+                
                 if let json = musuemInfo as? Array<NSDictionary> {
-                    if json.count >= 1{
+                    if json.count >= 1 {
                         
                         
                         // gets the museum aand its informations
                         let myEntry : AnyObject! = json[0]
                         
                         //gets the location from the museum info
-                        let myLoc : AnyObject! = myEntry["location"]
+                        let myLoc : AnyObject! = myEntry["location_1"]
                         
                         //converts the lat and long from strings
                         let newLat  = numberFormatter.numberFromString(myLoc["latitude"] as! String)!.doubleValue
                         let newLng = numberFormatter.numberFromString(myLoc["longitude"] as! String)!.doubleValue
-                        
-                        
-                        
                         
                         //gets the name and sets it to the name label
                         if let name:String = myEntry["commonname"] as? String {
                             nameLabel.text = name
                         }
                         
-                        
-                        
-                        
+
                         //sets the disipline label as well
                         
                         if let discipl:String = myEntry["discipl"] as? String {
@@ -178,7 +165,7 @@ class detail_controller: UIViewController {
                             
                             
                             
-                           //finds the information about a certain location from the location
+                            //finds the information about a certain location from the location
                             geocoder.reverseGeocodeLocation(loc, completionHandler: { (placemarks:[CLPlacemark]?, error) -> Void in
                                 
                                 if(error != nil)
@@ -223,9 +210,6 @@ class detail_controller: UIViewController {
                             mapIcon.hidden = true
                         }
                         
-                        
-                        
-                        
                         // sets the detail mapview to the coordinate of the museum whose data we have recieved
                         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: newLat, longitude: newLng)
                             ,span: MKCoordinateSpanMake(0.008, 0.008))
@@ -235,15 +219,19 @@ class detail_controller: UIViewController {
                         //sets the region and adds the annotation
                         detailMap.setRegion(region, animated: true)
                         self.detailMap.addAnnotation(annotation)
-                       
+                        
                     }else{
                         
-            print("No data recieved")
-        
+                        print("No data recieved")
+                        
                     }
                 }
             }catch{error}
             
         }
     }
+    
+    // MARK: IBActions
+    
+    // MARK: - Protocols
 }

@@ -10,25 +10,20 @@ import UIKit
 import CoreLocation
 
 
+// MARK: Globals
 public var enteredLoc = ""
 public var fromAdd = false
 
-
-
-
-
 class add_controller: UIViewController{
-
+    
+    // MARK: Properties
+    
+    // MARK: IBOutlets
+    
     @IBOutlet var locationField: UITextField!
     @IBOutlet var upperNav: UINavigationItem!
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    
+
+    // MARK: Functions
     
     //when the user clicks on the done button
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -36,23 +31,27 @@ class add_controller: UIViewController{
         return false
     }
     
+    // MARK: Overrides
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
+    // MARK: IBActions
     
     //if the user clicks on the back button
     @IBAction func backPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
-    
-    
-    
-    
     //if done is clicked
     @IBAction func donePressed(sender: AnyObject) {
-    
+        
         //check whether the location field is empty
         if locationField.text != ""
         {
@@ -64,7 +63,7 @@ class add_controller: UIViewController{
             
             //dismiss the view controller
             self.dismissViewControllerAnimated(true, completion: nil)
-       
+            
             
         }else{
             
@@ -73,22 +72,10 @@ class add_controller: UIViewController{
             myerror.message = "Please enter a valid location"
             myerror.addButtonWithTitle("OK")
             myerror.show()
-        
+            
         }
     }
-
-
     
-    
-    
-    
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
+    // MARK: - Protocols
+ 
 }

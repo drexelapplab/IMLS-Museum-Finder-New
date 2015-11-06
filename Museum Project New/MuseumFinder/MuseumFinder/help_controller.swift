@@ -10,31 +10,43 @@ import UIKit
 
 class help_controller: UIViewController {
     
-    @IBOutlet var nav: UINavigationItem!
+    // MARK: Properties
+    // MARK: IBOutlets
+    @IBOutlet var nav: UINavigationItem! //TODO: Removeable?
+
+    // MARK: Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+        // TODO: Add helptext here in textview
     }
-    
-    
-    
-    
-    //dimisses the controller if the back button is pressed
-    @IBAction func backPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
+    // MARK: IBActions
+    
+    
+    /**
+    
+    Dimisses the controller if the back button is pressed
+    
+    - Parameter sender: the object that sent the message, a UIButton
+    
+    */
+    @IBAction func backPressed(sender: AnyObject) { //TODO: Removeable?
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: Functions
+    
+    // put other functions here
+    
+    
+    // MARK: - Protocols
+    
+    // put any protocol methods here and mark each
+    // different set of protocols before it's methods
 
 }
