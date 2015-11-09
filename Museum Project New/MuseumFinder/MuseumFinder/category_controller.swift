@@ -104,6 +104,11 @@ class category_controller: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /// Method overrided to tell Navigation controller which orientation to use for this viewController
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+    
     // MARK: Functions
     
     //method that resizes all the switches
@@ -185,5 +190,7 @@ class category_controller: UIViewController {
     }
     
     // MARK: - Protocols
+    
+    
 
 }

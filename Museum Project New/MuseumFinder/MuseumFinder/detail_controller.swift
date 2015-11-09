@@ -48,6 +48,11 @@ class detail_controller: UIViewController {
         
     }
     
+    /// Method overrided to tell Navigation controller which orientation to use for this viewController
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+    
     // MARK: Functions
     
     // sends the query and gets the museum details

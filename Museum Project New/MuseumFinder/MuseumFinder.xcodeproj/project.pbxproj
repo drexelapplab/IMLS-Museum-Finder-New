@@ -36,6 +36,7 @@
 		33E5A5181BA5F1FB006E5B39 /* appleMaps.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A5091BA5F1FB006E5B39 /* appleMaps.jpg */; };
 		33E5A5191BA5F1FB006E5B39 /* safariIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A50A1BA5F1FB006E5B39 /* safariIcon.jpg */; };
 		33E5A51A1BA5F1FB006E5B39 /* LaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E5A50B1BA5F1FB006E5B39 /* LaunchImage.png */; };
+		6107EC731BF1020F00344267 /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6107EC721BF1020F00344267 /* UINavigationControllerExtensions.swift */; };
 		610D0A811BE001D200A653C9 /* search_controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610D0A801BE001D200A653C9 /* search_controller.swift */; };
 		612D92071BE7DEC60005E488 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 612D92061BE7DEC60005E488 /* Assets.xcassets */; };
 		61E785171BE2B19D0083525E /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E785161BE2B19D0083525E /* SwiftyJSON.swift */; };
@@ -94,6 +95,7 @@
 		33E5A5091BA5F1FB006E5B39 /* appleMaps.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = appleMaps.jpg; path = ../../musuem_app/appleMaps.jpg; sourceTree = "<group>"; };
 		33E5A50A1BA5F1FB006E5B39 /* safariIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = safariIcon.jpg; path = ../../musuem_app/safariIcon.jpg; sourceTree = "<group>"; };
 		33E5A50B1BA5F1FB006E5B39 /* LaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchImage.png; path = ../../musuem_app/LaunchImage.png; sourceTree = "<group>"; };
+		6107EC721BF1020F00344267 /* UINavigationControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtensions.swift; sourceTree = "<group>"; };
 		610D0A801BE001D200A653C9 /* search_controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = search_controller.swift; sourceTree = "<group>"; };
 		612D92061BE7DEC60005E488 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MuseumFinder/Assets.xcassets; sourceTree = "<group>"; };
 		61E785161BE2B19D0083525E /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				33240C5E1BA5EFDA004D3D35 /* help_controller.swift */,
 				610D0A801BE001D200A653C9 /* search_controller.swift */,
 				61E785161BE2B19D0083525E /* SwiftyJSON.swift */,
+				6107EC721BF1020F00344267 /* UINavigationControllerExtensions.swift */,
 			);
 			path = MuseumFinder;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				33240C2B1BA5EF47004D3D35 /* ViewController.swift in Sources */,
 				33240C291BA5EF47004D3D35 /* AppDelegate.swift in Sources */,
 				33240C651BA5EFDA004D3D35 /* help_controller.swift in Sources */,
+				6107EC731BF1020F00344267 /* UINavigationControllerExtensions.swift in Sources */,
 				33240C601BA5EFDA004D3D35 /* venues_controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
