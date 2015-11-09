@@ -149,64 +149,7 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
             }
     }
 
-//        //method that sends the query when the text changes
-//        func sendQueryAndGetNames(){
-//            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
-//
-//            //prep the query
-//            var queryPath = "https://data.imls.gov/resource/ku5e-zr2b.json?$select=commonname,location_1&$limit=\(self.limit)&$q=(\(self.resultSearchController.searchBar.text!))"
-//            print(queryPath)
-//            queryPath = queryPath.stringByReplacingOccurrencesOfString(" ", withString: "%20")
-//    
-//    
-//            //sends the query with the tet from the search bar
-//            if let queryURL=NSURL(string: queryPath){
-//                if let positionData=NSData(contentsOfURL:queryURL){
-//                    do {
-//                        let positions: AnyObject! = try NSJSONSerialization.JSONObjectWithData(positionData, options: NSJSONReadingOptions(rawValue: 0))
-//                        if let json = positions as? Array<NSDictionary> {
-//                            if json.count >= 1 {
-//    
-//                                //removes the previous info
-//                                self.data.removeAll(keepCapacity: false)
-//                                self.addresses.removeAll(keepCapacity: false)
-//        
-//                                //parses the info and add it to the array
-//                                for index in 0...json.count-1{
-//    
-//                                    let myEntry = json[index]
-//                                    if let musName = myEntry["commonname"] as? String{
-//                                        self.data.append(musName)
-//                                    }
-//    
-//                                    //get the location
-//                                    let myLoc : AnyObject! = myEntry["location_1"]
-//    
-//                                    //get the address and append it to the address array
-//                                    if let human_address : AnyObject! = myLoc["human_address"]{
-//                                        let partialAddress = (human_address as? String)!.stringByReplacingOccurrencesOfString("{", withString: "").stringByReplacingOccurrencesOfString("}", withString: "").stringByReplacingOccurrencesOfString(",", withString: "").stringByReplacingOccurrencesOfString("\"", withString: "").stringByReplacingOccurrencesOfString("address", withString: "").stringByReplacingOccurrencesOfString("city", withString: "").stringByReplacingOccurrencesOfString("state", withString: "").stringByReplacingOccurrencesOfString("zip", withString: "").stringByReplacingOccurrencesOfString(":", withString: "")
-//    
-//                                        self.addresses.append(partialAddress)
-//                                    }
-//                                }
-//                            }else{
-//                                //remove all the previous info
-//                                self.data.removeAll(keepCapacity: false)
-//                                self.addresses.removeAll(keepCapacity: false)
-//                                print("No Matches")
-//                            }
-//                        }
-//                    }catch{error}
-//                } else {
-//                    //if there is an error sending the query
-//                    myerror.title = "Error"
-//                    myerror.message = "Couldn't connect to Server"
-//                    myerror.addButtonWithTitle("OK")
-//                    myerror.show()
-//                }
-//            }
-//            }
-//        }
+
     
     // MARK: IBActions
     
@@ -245,9 +188,6 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count;
     }
-    
-    
-    
     
     //sets the information for every cell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
