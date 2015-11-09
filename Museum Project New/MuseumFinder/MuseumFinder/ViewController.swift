@@ -25,6 +25,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var geocoder = CLGeocoder()
     var mapShown = true
     var fromMyLoc = false
+    var placemark:CLPlacemark? = nil
     
     // MARK: - IBOutlets
     
@@ -102,44 +103,42 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 
             }else{
                 // get the geocoded placemark, find the location and setup the map at that location
-                let placemark = placemarks![0]
-                let location = placemark.location!
-                
-                self.makeMap(location)
-                self.myMapView.addAnnotation(MKPlacemark(placemark: placemark))
-                
-                
-                // sets the center coordinate to the value of this location
-                centerCoordinate.latitude = location.coordinate.latitude
-                centerCoordinate.longitude = location.coordinate.longitude
-                
-                
-                // sets the annotation's callout to the name of the placemark
-                let ann = MKPointAnnotation()
-                ann.coordinate = centerCoordinate
-                
-                if let name = placemark.name
-                {
-                    ann.title = name
+                self.placemark = placemarks![0]
+                if self.placemark != nil{
+                    let location = self.placemark!.location!
                     
-                    if let locality = placemark.locality
+                    self.makeMap(location)
+                    self.myMapView.addAnnotation(MKPlacemark(placemark: self.placemark!))
+                
+                    
+                    // sets the center coordinate to the value of this location
+                    centerCoordinate.latitude = location.coordinate.latitude
+                    centerCoordinate.longitude = location.coordinate.longitude
+                    
+                
+                    // sets the annotation's callout to the name of the placemark
+                    let ann = MKPointAnnotation()
+                    ann.coordinate = centerCoordinate
+                    
+                    if let name = self.placemark!.name
                     {
-                        ann.title = ann.title! + ", " + locality
+                        ann.title = name
+                    
+                        if let locality = self.placemark!.locality {
+                            ann.title = ann.title! + ", " + locality
                         
-                        if let aArea = placemark.administrativeArea
-                        {
-                            ann.title = ann.title! + ", " + aArea
+                            if let aArea = self.placemark!.administrativeArea {
+                                ann.title = ann.title! + ", " + aArea
                             
-                            if let pCode = placemark.postalCode
-                            {
-                                ann.title = ann.title! + "-" + pCode
+                                if let pCode = self.placemark!.postalCode {
+                                    ann.title = ann.title! + "-" + pCode
+                                }
                             }
                         }
                     }
+                
+                    self.myMapView.addAnnotation(ann)
                 }
-                
-                self.myMapView.addAnnotation(ann)
-                
             }
         }
     }
@@ -161,8 +160,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print("fromMyLoc = \(fromMyLoc)")
             fromMyLoc = false
         }
-        
-        
     }
     
     // method that gets called everytime you want to update the museums in the mapview
@@ -212,6 +209,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     // remove all th values from my array
                     json.removeAll(keepCapacity: false)
                     
+                    if placemark != nil {
+                        print("notnil")
+                        self.myMapView.addAnnotation(MKPlacemark(placemark: self.placemark!))
+                    }
                 }else{
                     print("No points to plot/annotate")
                 }
