@@ -60,8 +60,8 @@ class detail_controller: UIViewController {
     func getMusuemDetails(){
         
         let url = NSURL(string: newUrlPath)
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
         if let musuemData=NSData(contentsOfURL:url!){
-            
             do{
                 let musuemInfo: AnyObject! = try NSJSONSerialization.JSONObjectWithData(musuemData, options: NSJSONReadingOptions(rawValue: 0))
                 
@@ -80,88 +80,87 @@ class detail_controller: UIViewController {
                         let newLat  = numberFormatter.numberFromString(myLoc["latitude"] as! String)!.doubleValue
                         let newLng = numberFormatter.numberFromString(myLoc["longitude"] as! String)!.doubleValue
                         
+                        dispatch_async(dispatch_get_main_queue()) {
                         //gets the name and sets it to the name label
                         if let name:String = myEntry["commonname"] as? String {
-                            nameLabel.text = name
+                            self.nameLabel.text = name
                         }
-                        
+                        }
 
                         //sets the disipline label as well
-                        
+                        dispatch_async(dispatch_get_main_queue()) {
                         if let discipl:String = myEntry["discipl"] as? String {
                             
                             if discipl == "ART" {
-                                disciplineLabel.text = "Art Museum"
+                                self.disciplineLabel.text = "Art Museum"
                             }
                                 
                             else if discipl == "BOT"{
-                                disciplineLabel.text  = "Botanical Garden"
+                                self.disciplineLabel.text  = "Botanical Garden"
                             }
                                 
                             else if discipl == "CMU"{
-                                disciplineLabel.text  = "Children's Museum"
+                                self.disciplineLabel.text  = "Children's Museum"
                             }
                                 
                             else if discipl == "GMU"{
-                                disciplineLabel.text  = "General Museum"
+                                self.disciplineLabel.text  = "General Museum"
                             }
                                 
                             else if discipl == "HSC"{
-                                disciplineLabel.text = "Historical Society and Preservation"
+                                self.disciplineLabel.text = "Historical Society and Preservation"
                             }
                                 
                             else if discipl == "HST"{
-                                disciplineLabel.text = "History Museum"
+                                self.disciplineLabel.text = "History Museum"
                             }
                                 
                             else if discipl == "NAT"{
-                                disciplineLabel.text  = "Natural History and Science Museum"
+                                self.disciplineLabel.text  = "Natural History and Science Museum"
                             }
                                 
                             else if discipl == "SCI"{
-                                disciplineLabel.text  = "Science Museum"
+                                self.disciplineLabel.text  = "Science Museum"
                             }
                                 
                             else if discipl == "ZAW"{
-                                disciplineLabel.text  = "Zoos,Aquariums and WildLife"
+                                self.disciplineLabel.text  = "Zoos,Aquariums and WildLife"
                             }
+                        }
                         }
                         
                         
                         
                         
-                        
-                        
+                        dispatch_async(dispatch_get_main_queue()) {
                         // gets the phone string and adds two "-" before adding it to the label
                         if var phone:String = myEntry["phone"] as? String {
                             
                             phone.insert("-", atIndex: phone.endIndex.predecessor().predecessor().predecessor().predecessor())
                             phone.insert("-", atIndex: phone.startIndex.successor().successor().successor())
-                            phoneView.text = phone
+                            self.phoneView.text = phone
                             
                         }else{
-                            phoneView.hidden = true
-                            phoneIcon.hidden = true
+                            self.phoneView.hidden = true
+                            self.phoneIcon.hidden = true
+                        }
                         }
                         
                         
                         
-                        
+                        dispatch_async(dispatch_get_main_queue()) {
                         //sets the url label
                         if let website:String = myEntry["weburl"] as? String{
-                            websiteView.text = website
+                            self.websiteView.text = website
                         }else{
-                            websiteView.hidden = true
-                            safariIcon.hidden = true
+                            self.websiteView.hidden = true
+                            self.safariIcon.hidden = true
+                        }
                         }
                         
-                        
-                        
-                        
-                        
+                        dispatch_async(dispatch_get_main_queue()) {
                         // gets the human address infor from the museum details
-                        if let human_address : AnyObject! = myLoc["human_address"]
-                        {
+                        if let human_address : AnyObject! = myLoc["human_address"]{
                             //sets the view until it parses the information
                             self.adressView.text = "Loading..."
                             
@@ -171,7 +170,7 @@ class detail_controller: UIViewController {
                             
                             
                             //finds the information about a certain location from the location
-                            geocoder.reverseGeocodeLocation(loc, completionHandler: { (placemarks:[CLPlacemark]?, error) -> Void in
+                            self.geocoder.reverseGeocodeLocation(loc, completionHandler: { (placemarks:[CLPlacemark]?, error) -> Void in
                                 
                                 if(error != nil)
                                 {
@@ -211,8 +210,9 @@ class detail_controller: UIViewController {
                             
                             
                         }else{
-                            adressView.hidden = true
-                            mapIcon.hidden = true
+                            self.adressView.hidden = true
+                            self.mapIcon.hidden = true
+                        }
                         }
                         
                         // sets the detail mapview to the coordinate of the museum whose data we have recieved
@@ -222,8 +222,10 @@ class detail_controller: UIViewController {
                         annotation.coordinate = CLLocationCoordinate2DMake(newLat, newLng)
                         
                         //sets the region and adds the annotation
-                        detailMap.setRegion(region, animated: true)
-                        self.detailMap.addAnnotation(annotation)
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.detailMap.setRegion(region, animated: true)
+                            self.detailMap.addAnnotation(annotation)
+                        }
                         
                     }else{
                         
@@ -234,6 +236,9 @@ class detail_controller: UIViewController {
             }catch{error}
             
         }
+        }
+        
+        
     }
     
     // MARK: IBActions
