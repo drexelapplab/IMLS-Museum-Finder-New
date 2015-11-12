@@ -64,7 +64,6 @@ class add_controller: UIViewController{
             //dismiss the view controller
             self.dismissViewControllerAnimated(true, completion: nil)
             
-            
         }else{
             
             // if the field is empty
@@ -72,7 +71,6 @@ class add_controller: UIViewController{
             myerror.message = "Please enter a valid location"
             myerror.addButtonWithTitle("OK")
             myerror.show()
-            
         }
     }
     

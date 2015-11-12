@@ -22,12 +22,10 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
     // MARK: Overrides
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         //get all my museum names
         getMyMusuemNames()
-        
         
         //setting up the search bar and all its properties with the results view at the top
         self.searchController = ({
@@ -40,11 +38,11 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
             controller.searchBar.placeholder = "Search this list by name"
             controller.hidesNavigationBarDuringPresentation = false
             controller.searchBar.sizeToFit()
-            
             self.tableView.tableHeaderView = controller.searchBar
             
             return controller
         })()
+        
         // initial setup and delegation
         searchController.searchBar.delegate = self
         tableView.delegate = self
@@ -60,12 +58,11 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
         
         var musNameArray = [String]()
         
-        
-        if myMusuemData.count >= 1
+        if museumData.count >= 1
         {
-            for index in 0...myMusuemData.count-1{
+            for index in 0...museumData.count-1{
                 
-                let myEntry = myMusuemData[index]
+                let myEntry = museumData[index]
                 
                 musNameArray.append(myEntry["commonname"] as! String)
             }
@@ -85,7 +82,7 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
     // MARK: IBActions
     
     // MARK: - Protocols
-    
+
     // MARK: TableViewDatasource, TableView Delegate
     
     //number of sections
@@ -141,73 +138,58 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
         //send the query to get all the remaining details for that museum
         let extString = NSURL(fileURLWithPath: cell.textLabel!.text!).relativeString!.stringByReplacingOccurrencesOfString("&", withString: "%26").stringByReplacingOccurrencesOfString("+", withString: "%2B")
         
+        
         let newurlPath = "https://data.imls.gov/resource/ku5e-zr2b.json?commonname=\(extString)&$select=location_1,commonname"
-        
-        
-        if let musuemData=NSData(contentsOfURL:NSURL(string: newurlPath)!){
-            
-            
-            do {
-                let musuemInfo: AnyObject! = try NSJSONSerialization.JSONObjectWithData(musuemData, options: NSJSONReadingOptions(rawValue: 0))
-                if let info = musuemInfo as? Array<NSDictionary> {
-                    if info.count >= 1{
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
+
+            if let musuemData=NSData(contentsOfURL:NSURL(string: newurlPath)!){
+                do {
+                    let musuemInfo: AnyObject! = try NSJSONSerialization.JSONObjectWithData(musuemData, options: NSJSONReadingOptions(rawValue: 0))
+                    if let info = musuemInfo as? Array<NSDictionary> {
+                        if info.count >= 1{
                         
-                        let myEntry : AnyObject! = info[0]
-                        let musName = myEntry["commonname"] as! String
-                        
-                        let centerLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
-                        
-                        
-                        if musName == data[indexPath.row]{
+                            let myEntry : AnyObject! = info[0]
+                            let musName = myEntry["commonname"] as! String
+                            
+                            let centerLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
                             
                             
-                            //gets the location of the museum and calculates the distance from your locations for every cell
-                            
-                            let myLoc : AnyObject! = myEntry["location_1"]
+                            if musName == self.data[indexPath.row]{
                             
                             
-                            let muscoordinates = CLLocationCoordinate2DMake(numberFormatter.numberFromString(myLoc["latitude"] as! String)!.doubleValue, numberFormatter.numberFromString(myLoc["longitude"] as! String)!.doubleValue)
+                                //gets the location of the museum and calculates the distance from your locations for every cell
+                            
+                                let myLoc : AnyObject! = myEntry["location_1"]
+                            
+                                let muscoordinates = CLLocationCoordinate2DMake(numberFormatter.numberFromString(myLoc["latitude"] as! String)!.doubleValue, numberFormatter.numberFromString(myLoc["longitude"] as! String)!.doubleValue)
                             
                             
-                            let musLocation: CLLocation = CLLocation(latitude: muscoordinates.latitude, longitude: muscoordinates.longitude)
+                                let musLocation: CLLocation = CLLocation(latitude: muscoordinates.latitude, longitude: muscoordinates.longitude)
                             
                             
-                            let distanceMeters = centerLocation.distanceFromLocation(musLocation)
-                            let distanceMiles = (distanceMeters / 1609.344)
+                                let distanceMeters = centerLocation.distanceFromLocation(musLocation)
+                                let distanceMiles = (distanceMeters / 1609.344)
                             
                             
-                            //sets the distance to the detail label
-                            cell.detailTextLabel?.text = "\((round(10*distanceMiles))/10) mi."
+                                //sets the distance to the detail label
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    cell.detailTextLabel?.text = "\((round(10*distanceMiles))/10) mi."
+                                }
+                            }
                         }
-                        
-                        
                     }
-                }
-            }catch{error}
-            
+                }catch{error}
+            }
         }
         return cell
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     // if the user selects one of the cells then prep the query string and show the detail view
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let name = (tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text)!
-        
         
         let extString = NSURL(fileURLWithPath: name).relativeString!.stringByReplacingOccurrencesOfString("&", withString: "%26")
         newUrlPath = "https://data.imls.gov/resource/ku5e-zr2b.json?$select=location_1,commonname,phone,weburl,discipl&commonname=\(extString)"

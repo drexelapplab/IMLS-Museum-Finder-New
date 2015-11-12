@@ -11,7 +11,7 @@ import MapKit // Uses mapkit to show User Museums
 import CoreLocation // Needs location to find local museums around user
 
 // made a few public variable to pass information among controller classes, probably better to use prepforsegue method
-public var myMusuemData :  Array<NSDictionary> = []
+public var museumData :  Array<NSDictionary> = []
 public var centerCoordinate = CLLocationCoordinate2D()
 public var myerror = UIAlertView()
 
@@ -201,7 +201,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 if json.count >= 1 {
                     
                     // set to a public property to be suer by another controller
-                    myMusuemData=json
+                    museumData=json
                     
                     // add the annotation
                     self.makeAnnotations(json)

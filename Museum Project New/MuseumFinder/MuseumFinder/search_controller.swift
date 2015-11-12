@@ -148,8 +148,6 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
                 self.addresses.append(addressText)
             }
     }
-
-
     
     // MARK: IBActions
     
