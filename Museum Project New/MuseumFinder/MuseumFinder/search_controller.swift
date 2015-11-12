@@ -11,7 +11,6 @@ import UIKit
 class search_controller: UIViewController,UITableViewDataSource, UITableViewDelegate,UISearchResultsUpdating, UISearchBarDelegate {
 
     // MARK: Properties
-    
     var resultSearchController = UISearchController()
     // Search bar and updater
     var data:[String] = []
@@ -168,6 +167,8 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
             let extString = ext.relativeString!.stringByReplacingOccurrencesOfString("&", withString: "%26").stringByReplacingOccurrencesOfString("+", withString: "%2B")
         
             newUrlPath = "https://data.imls.gov/resource/ku5e-zr2b.json?commonname=\(extString)&$select=location_1,commonname,phone,weburl,discipl"
+            
+            resultSearchController.active = false
             //show the details view
             let storyboard = UIStoryboard(name: "Main" , bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("detailController")
