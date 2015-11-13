@@ -165,7 +165,7 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
             let ext = NSURL(fileURLWithPath: text)
         
             let extString = ext.relativeString!.stringByReplacingOccurrencesOfString("&", withString: "%26").stringByReplacingOccurrencesOfString("+", withString: "%2B")
-        
+
             newUrlPath = "https://data.imls.gov/resource/ku5e-zr2b.json?commonname=\(extString)&$select=location_1,commonname,phone,weburl,discipl"
             
             resultSearchController.active = false
