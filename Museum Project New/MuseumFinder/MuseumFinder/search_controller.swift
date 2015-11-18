@@ -127,12 +127,18 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
     
     
     func sendQueryAndGetNames(){
-            
-            var queryPath = "https://data.imls.gov/resource/ku5e-zr2b.json?$select=commonname,location_1&$q=(\(self.resultSearchController.searchBar.text!))"
-            
+            // original query with limit of 10
+            var queryPath = "https://data.imls.gov/resource/ku5e-zr2b.json?$select=commonname,location_1&$limit=10&$q=(\(self.resultSearchController.searchBar.text!))"
+            // if "search" is hit, remove limit this time and reset flag
+            if (searchHitFlag){
+                queryPath = "https://data.imls.gov/resource/ku5e-zr2b.json?$select=commonname,location_1&$q=(\(self.resultSearchController.searchBar.text!))"
+                searchHitFlag = false
+            }
+        
+            //fix spacing
             queryPath = queryPath.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+        
             let queryURL = NSURL(string: queryPath)
-            
             let posData = try? NSData(contentsOfURL: queryURL!,options: [])
             let json = JSON(data: posData!)
             
@@ -205,7 +211,13 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
         cell.detailTextLabel?.font = UIFont.systemFontOfSize(12.0)
         if indexPath.row < data.count{
             cell.textLabel?.text = data[indexPath.row]
+        } else {
+            cell.textLabel?.text = ""
+        }
+        if(indexPath.row < addresses.count){
             cell.detailTextLabel?.text = addresses[indexPath.row]
+        } else {
+            cell.detailTextLabel?.text = ""
         }
         
         return cell;
@@ -213,18 +225,19 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
     
     //MARK: UISearchResultsUpdating, UISearchBarDelegate
     
-    //everytime the user adds a new charcter then send the query and update the table view
+    //function automatically called whenever search text changes or button is hit (enter, search cancel, etc.)
+    //can't be turned off; instead use other callbacks to trigger conditionals in this method
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        if (searchHitFlag){
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
-            self.sendQueryAndGetNames()
-            //removes the previous info
-            dispatch_async(dispatch_get_main_queue()) {
-                self.searchTableView.reloadData()
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
+                
+                //Note: conditional block was moved into sendQuery and getNames to reduce code redundancy
+                
+                self.sendQueryAndGetNames()
+                //removes the previous info
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.searchTableView.reloadData()
+                }
             }
-        }
-            searchHitFlag = false
-        }
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar){

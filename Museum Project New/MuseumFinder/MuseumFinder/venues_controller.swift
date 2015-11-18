@@ -222,7 +222,6 @@ class venues_controller: UIViewController,UITableViewDataSource, UITableViewDele
         
         
         self.tableView.reloadData()
-        print("updateSearchResultsForSearchController")
         
     }
     
