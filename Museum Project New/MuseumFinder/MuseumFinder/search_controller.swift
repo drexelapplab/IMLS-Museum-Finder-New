@@ -17,6 +17,7 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
     var addresses:[String] = []
     //    var filtered:[String] = []
     var limit = 100 //the amount of matches you want returned
+    var searchHitFlag = false
     
     // MARK: IBOutlets
     
@@ -136,7 +137,6 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
             let json = JSON(data: posData!)
             
             //removes the previous info
-            print("remove info")
             self.data.removeAll(keepCapacity: false)
             self.addresses.removeAll(keepCapacity: false)
             
@@ -215,15 +215,20 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
     
     //everytime the user adds a new charcter then send the query and update the table view
     func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if (searchHitFlag){
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
-
             self.sendQueryAndGetNames()
             //removes the previous info
-            
             dispatch_async(dispatch_get_main_queue()) {
                 self.searchTableView.reloadData()
-                print("updateSearchResultsForSearchController")
             }
         }
+            searchHitFlag = false
+        }
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar){
+        searchHitFlag = true
+        updateSearchResultsForSearchController(resultSearchController)
     }
 }
