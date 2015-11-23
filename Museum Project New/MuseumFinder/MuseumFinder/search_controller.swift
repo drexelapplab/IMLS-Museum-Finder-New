@@ -23,6 +23,7 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
     
     /// tableview for displaying search results
     @IBOutlet weak var searchTableView: UITableView!
+    @IBOutlet weak var spinnerActivityIndicatorView: UIActivityIndicatorView!
     
     // MARK: Overrides
     override func viewDidLoad() {
@@ -48,6 +49,7 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
         searchTableView.dataSource = self
         self.searchTableView.reloadData()
         //searchTableView.hidden = true
+        spinnerActivityIndicatorView.hidden = true
 
         // Do any additional setup after loading the view.
     }
@@ -228,14 +230,25 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
     //function automatically called whenever search text changes or button is hit (enter, search cancel, etc.)
     //can't be turned off; instead use other callbacks to trigger conditionals in this method
     func updateSearchResultsForSearchController(searchController: UISearchController) {
+//        let spinner:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+//        self.searchTableView.addSubview(spinner)
+//        self.searchTableView.addSubview(spinner)
+//        spinner.startAnimating()
+        
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
                 
                 //Note: conditional block was moved into sendQuery and getNames to reduce code redundancy
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.spinnerActivityIndicatorView.hidden = false
+                }
                 
                 self.sendQueryAndGetNames()
+                
                 //removes the previous info
                 dispatch_async(dispatch_get_main_queue()) {
                     self.searchTableView.reloadData()
+                    self.searchTableView.numberOfRowsInSection(self.searchTableView.numberOfSections)
+                    self.spinnerActivityIndicatorView.hidden = true
                 }
             }
     }
@@ -243,5 +256,6 @@ class search_controller: UIViewController,UITableViewDataSource, UITableViewDele
     func searchBarSearchButtonClicked(searchBar: UISearchBar){
         searchHitFlag = true
         updateSearchResultsForSearchController(resultSearchController)
+        spinnerActivityIndicatorView.hidden = true
     }
 }

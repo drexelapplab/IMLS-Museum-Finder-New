@@ -379,6 +379,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="f2x-7L-7DU">
+                                    <rect key="frame" x="0.0" y="64" width="375" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                </activityIndicatorView>
                             </tableView>
                         </subviews>
                         <animations/>
@@ -393,11 +398,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="searchTableView" destination="ZSq-40-M1L" id="d1H-gV-6H4"/>
+                        <outlet property="spinnerActivityIndicatorView" destination="f2x-7L-7DU" id="LNk-Hi-dEp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qS6-Zb-jc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3154.5" y="1183.5"/>
+            <point key="canvasLocation" x="3154.5" y="1159.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ehx-lX-vcb">

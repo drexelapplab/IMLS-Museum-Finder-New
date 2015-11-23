@@ -82,7 +82,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
     
