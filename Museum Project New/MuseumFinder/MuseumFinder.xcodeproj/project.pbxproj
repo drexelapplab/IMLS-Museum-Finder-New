@@ -287,6 +287,11 @@
 					33240C241BA5EF47004D3D35 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = JA5LN72D3Y;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					33240C3B1BA5EF47004D3D35 = {
 						CreatedOnToolsVersion = 7.0;
@@ -536,7 +541,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Drexel University (JA5LN72D3Y)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MuseumFinder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
